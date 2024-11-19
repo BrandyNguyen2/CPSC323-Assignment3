@@ -1,7 +1,12 @@
 @
-integer i, max;
-boolean thing, man;
-if (i == max) i = 1;
-else i = 0;
-fi
+integer i, max, sum; [* declarations *]
+real thing,  guy, foe;
+sum = 0;
+i = 1;
+get (max);
+while (i < max) {
+sum = sum + i;
+i = i + 1;
+}
+put (sum + max);
 @

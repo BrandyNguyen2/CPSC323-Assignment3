@@ -188,7 +188,7 @@ def isIdentifier(token):
                     
                     
           # checks if final state is in accepting state
-     if state in accepting_states:
+     if state in accepting_states and token not in keywords:
           return True
      else:
           return False
@@ -230,7 +230,7 @@ def back_patch(jump_addr):
 
 # SYNTACTICAL ANALYZER PORTION
 
-
+#print(isIdentifier("true"))
 
 
 with open (Output_file, "w") as file:
@@ -409,7 +409,7 @@ def IDs():
     if AddToList:
         rules_used.append("IDs")
     if isIdentifier(token):
-        if token not in temp_symbol_table and token not in keywords:
+        if token not in temp_symbol_table:
             if change_table == True:
                 temp_symbol_table[token] = {"memory_location": memory_tracker, "type": declaration_type}
                 memory_tracker += 1
@@ -506,6 +506,7 @@ def Assign():
             Error()
             sys.exit()
         save = token
+        #print(save)
         lexer()
         if token == '=':
             lexer()
@@ -813,13 +814,19 @@ def TermPrime():
 
 
 def Factor():
+    global save
     if switch:
         print(token + " " + "Factor")
     if AddToList:
         rules_used.append("Factor")
 
     #if token == "-":
-    if isIdentifier(token):
+    if isIdentifier(token): #and token not in keywords:
+        if save != "":
+            if symbol_table[token]['type'] != symbol_table[save]['type']:
+                errors.append("ERROR NO TYPE CASTING ALLOWED")
+                Error()
+                sys.exit()
         gen_instr("PUSHM", get_address(token))
 
         lexer()
@@ -830,11 +837,24 @@ def Factor():
 
 
 def Primary():
+    global save
     if switch:
         print("Primary")
     if AddToList:
         rules_used.append("Primary")
-    if isIdentifier(token):
+        
+        
+    if  token == "true":
+        if save != "":
+            if symbol_table[save]['type'] != "boolean":
+                errors.append("INVALID ASSIGNMENT")
+                Error()
+                sys.exit()
+        lexer()
+        #print(symbol_table)
+    elif token == "false":
+        lexer()
+    elif isIdentifier(token):
          lexer()
          if token == "(":
               IDs()
@@ -842,7 +862,13 @@ def Primary():
                    lexer()
                    
             
-    elif isInteger(token):
+    elif isInteger(token) or isReal(token):
+        #print(save)
+        if save != "":
+            if symbol_table[save]['type'] != "integer":
+                errors.append("INVALID ASSIGNMENT")
+                Error()
+                sys.exit()
         gen_instr("PUSHI", token)
         lexer()
     elif token == "(":
@@ -852,10 +878,10 @@ def Primary():
               lexer()
     elif isReal(token):
          lexer()
-    elif token == "true":
-         lexer()
-    elif token == "false":
-         lexer()
+    #elif token == "true":
+    #     lexer()
+    #elif token == "false":
+    #     lexer()
 
 
 def Empty():
