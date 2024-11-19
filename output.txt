@@ -1,0 +1,57 @@
+Output:
+Token                 Lexeme                 Production Rules
+---------             --------               --------------------
+Separator             @                      Rat24F
+Keyword               integer                OptDeclarationList, DeclarationList, Declaration, Qualifier
+Identifier            i                      IDs
+Separator             ,                      IDs_prime
+Identifier            max                    IDs
+Separator             ;                      IDs_prime, IDs
+Keyword               boolean                DeclarationList_prime, DeclarationList, Declaration, Qualifier
+Identifier            thing                  IDs
+Separator             ,                      IDs_prime
+Identifier            man                    IDs
+Separator             ;                      IDs_prime, IDs
+Keyword               if                     DeclarationList_prime, Empty, StatementList, Statement, If
+Separator             (                      
+Identifier            i                      Condition, Expression, Term, Factor
+Operator              ==                     Primary, TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Identifier            max                    Expression, Term, Factor
+Separator             )                      Primary, TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime, Relop, Expression, Term, Factor, Primary, TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Identifier            i                      Statement, Assign
+Operator              =                      
+Integer               1                      Expression, Term, Factor, Primary
+Separator             ;                      TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Keyword               else                   If_prime
+Identifier            i                      Statement, Assign
+Operator              =                      
+Integer               0                      Expression, Term, Factor, Primary
+Separator             ;                      TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Keyword               fi                     
+Separator             @                      StatementList_prime, Empty
+
+Assembly code listing
+----------------------
+
+1   PUSHM   9000
+2   PUSHM   9001
+3   EQU     
+4   JUMPZ   8
+5   PUSHI   1
+6   POPM    9000
+7   JUMPZ   11
+8   LABEL   
+9   PUSHI   0
+10  POPM    9000
+11  LABEL   
+
+
+Symbol Table
+-----------------------
+
+Identifier     Memory Location         Type
+
+i              9000                    integer
+max            9001                    integer
+thing          9002                    boolean
+man            9003                    boolean

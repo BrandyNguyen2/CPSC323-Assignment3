@@ -1,0 +1,7 @@
+@
+integer i, max;
+boolean thing, man;
+if (i == max) i = 1;
+else i = 0;
+fi
+@
