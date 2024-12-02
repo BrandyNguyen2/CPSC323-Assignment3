@@ -1,0 +1,25 @@
+@
+integer i, max, sum, j, x; [* declarations *]
+real thing,  guy, foe;
+sum = 0;
+i = 1;
+j = 5;
+x = 10;
+get (max);
+while (i < max) {
+sum = sum + i;
+i = i + 1;
+}
+if (j == 5) {
+j = j * max - 1;
+x = sum + max + x ;
+x = x / j;
+}
+else 
+{
+j = 5;
+x = 0;
+}
+fi
+put (sum + max);
+@

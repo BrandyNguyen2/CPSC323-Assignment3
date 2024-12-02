@@ -1,0 +1,187 @@
+Output:
+Token                 Lexeme                 Production Rules
+---------             --------               --------------------
+Separator             @                      Rat24F
+Keyword               integer                OptDeclarationList, DeclarationList, Declaration, Qualifier
+Identifier            i                      IDs
+Separator             ,                      IDs_prime
+Identifier            max                    IDs
+Separator             ,                      IDs_prime
+Identifier            sum                    IDs
+Separator             ,                      IDs_prime
+Identifier            j                      IDs
+Separator             ,                      IDs_prime
+Identifier            x                      IDs
+Separator             ;                      IDs_prime, IDs
+Keyword               real                   DeclarationList_prime, DeclarationList, Declaration, Qualifier
+Identifier            thing                  IDs
+Separator             ,                      IDs_prime
+Identifier            guy                    IDs
+Separator             ,                      IDs_prime
+Identifier            foe                    IDs
+Separator             ;                      IDs_prime, IDs
+Identifier            sum                    DeclarationList_prime, Empty, StatementList, Statement, Assign
+Operator              =                      
+Integer               0                      Expression, Term, Factor, Primary
+Separator             ;                      TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Identifier            i                      StatementList_prime, StatementList, Statement, Assign
+Operator              =                      
+Integer               1                      Expression, Term, Factor, Primary
+Separator             ;                      TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Identifier            j                      StatementList_prime, StatementList, Statement, Assign
+Operator              =                      
+Integer               5                      Expression, Term, Factor, Primary
+Separator             ;                      TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Identifier            x                      StatementList_prime, StatementList, Statement, Assign
+Operator              =                      
+Integer               10                     Expression, Term, Factor, Primary
+Separator             ;                      TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Keyword               get                    StatementList_prime, StatementList, Statement, Scan
+Separator             (                      
+Identifier            max                    IDs
+Separator             )                      IDs_prime, IDs
+Separator             ;                      
+Keyword               while                  StatementList_prime, StatementList, Statement, While
+Separator             (                      
+Identifier            i                      Condition, Expression, Term, Factor
+Operator              <                      Primary, TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Identifier            max                    Expression, Term, Factor
+Separator             )                      Primary, TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime, Relop, Expression, Term, Factor, Primary, TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Separator             {                      Statement, Compound
+Identifier            sum                    StatementList, Statement, Assign
+Operator              =                      
+Identifier            sum                    Expression, Term, Factor
+Operator              +                      Primary, TermPrime, ExpressionPrime
+Identifier            i                      Term, Factor
+Separator             ;                      Primary, TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Identifier            i                      StatementList_prime, StatementList, Statement, Assign
+Operator              =                      
+Identifier            i                      Expression, Term, Factor
+Operator              +                      Primary, TermPrime, ExpressionPrime
+Integer               1                      Term, Factor, Primary
+Separator             ;                      TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Separator             }                      StatementList_prime, Empty
+Keyword               if                     StatementList_prime, StatementList, Statement, If
+Separator             (                      
+Identifier            j                      Condition, Expression, Term, Factor
+Operator              ==                     Primary, TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Integer               5                      Expression, Term, Factor, Primary
+Separator             )                      TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime, Relop, Expression, Term, Factor, Primary, TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Separator             {                      Statement, Compound
+Identifier            j                      StatementList, Statement, Assign
+Operator              =                      
+Identifier            j                      Expression, Term, Factor
+Operator              *                      Primary, TermPrime
+Identifier            max                    Factor
+Operator              -                      Primary, TermPrime, ExpressionPrime
+Integer               1                      Term, Factor, Primary
+Separator             ;                      TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Identifier            x                      StatementList_prime, StatementList, Statement, Assign
+Operator              =                      
+Identifier            sum                    Expression, Term, Factor
+Operator              +                      Primary, TermPrime, ExpressionPrime
+Identifier            max                    Term, Factor
+Operator              +                      Primary, TermPrime, ExpressionPrime
+Identifier            x                      Term, Factor
+Separator             ;                      Primary, TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Identifier            x                      StatementList_prime, StatementList, Statement, Assign
+Operator              =                      
+Identifier            x                      Expression, Term, Factor
+Operator              /                      Primary, TermPrime
+Identifier            j                      Factor
+Separator             ;                      Primary, TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Separator             }                      StatementList_prime, Empty
+Keyword               else                   If_prime
+Separator             {                      Statement, Compound
+Identifier            j                      StatementList, Statement, Assign
+Operator              =                      
+Integer               5                      Expression, Term, Factor, Primary
+Separator             ;                      TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Identifier            x                      StatementList_prime, StatementList, Statement, Assign
+Operator              =                      
+Integer               0                      Expression, Term, Factor, Primary
+Separator             ;                      TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Separator             }                      StatementList_prime, Empty
+Keyword               fi                     
+Keyword               put                    StatementList_prime, StatementList, Statement, Print
+Separator             (                      
+Identifier            sum                    Expression, Term, Factor
+Operator              +                      Primary, TermPrime, ExpressionPrime
+Identifier            max                    Term, Factor
+Separator             )                      Primary, TermPrime, ExpressionPrime, Term, Factor, Primary, TermPrime
+Separator             ;                      
+Separator             @                      StatementList_prime, Empty
+
+Assembly code listing
+----------------------
+
+1   PUSHI   0
+2   POPM    9002
+3   PUSHI   1
+4   POPM    9000
+5   PUSHI   5
+6   POPM    9003
+7   PUSHI   10
+8   POPM    9004
+9   STDIN   
+10  POPM    9001
+11  LABEL   
+12  PUSHM   9000
+13  PUSHM   9001
+14  LES     
+15  JUMPZ   25
+16  PUSHM   9002
+17  PUSHM   9000
+18  ADD     
+19  POPM    9002
+20  PUSHM   9000
+21  PUSHI   1
+22  ADD     
+23  POPM    9000
+24  JUMP    11
+25  PUSHM   9003
+26  PUSHI   5
+27  EQU     
+28  JUMPZ   46
+29  PUSHM   9003
+30  PUSHM   9001
+31  MUL     
+32  PUSHI   1
+33  SUB     
+34  POPM    9003
+35  PUSHM   9002
+36  PUSHM   9001
+37  ADD     
+38  PUSHM   9004
+39  ADD     
+40  POPM    9004
+41  PUSHM   9004
+42  PUSHM   9003
+43  DIV     
+44  POPM    9004
+45  JUMPZ   51
+46  LABEL   
+47  PUSHI   5
+48  POPM    9003
+49  PUSHI   0
+50  POPM    9004
+51  LABEL   
+52  PUSHM   9002
+53  PUSHM   9001
+54  ADD     
+55  STDOUT  
+
+
+Symbol Table
+-----------------------
+
+Identifier     Memory Location         Type
+
+i              9000                    integer
+max            9001                    integer
+sum            9002                    integer
+j              9003                    integer
+x              9004                    integer
+thing          9005                    real
+guy            9006                    real
+foe            9007                    real
