@@ -7,8 +7,8 @@ keywords = ["while", "if", "for", "fi", "integer", "boolean", "real", "put", "fu
 
 
 # CHANGE THESE 2 TO CHANGE INPUT / OUTPUT FILES
-Input_file = "input.txt"
-Output_file = "output.txt"
+Input_file = "input3.txt"
+Output_file = "output3.txt"
 
 
 # Takes text from input file and converts into a string with no spaces
@@ -234,7 +234,7 @@ def back_patch(jump_addr):
 
 
 with open (Output_file, "w") as file:
-        file.write(f'Output:\nToken{" "*17}{"Lexeme":<23}{"Production Rules"}\n{"-"*9}{" "*13}{"-"*8}{" "*15}{"-"*20}\n')
+       file.write(f'Output:\nToken{" "*17}{"Lexeme":<23}{"Production Rules"}\n{"-"*9}{" "*13}{"-"*8}{" "*15}{"-"*20}\n')
 
 switch = False
 AddToList = True
@@ -287,6 +287,8 @@ def lexer():
                     line_number += 1
                 else:
                     break
+                    
+
 
 
 
@@ -897,7 +899,7 @@ Rat24F()
 
 
 
-with open(Output_file, "a") as file:
+with open(Output_file, "w") as file:
         
     file.write(f"\nAssembly code listing\n----------------------\n\n")
     for i in instr_table:
