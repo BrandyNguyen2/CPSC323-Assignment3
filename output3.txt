@@ -69,6 +69,6 @@ max            9001                    integer
 sum            9002                    integer
 j              9003                    integer
 x              9004                    integer
-thing          9005                    real
-guy            9006                    real
-foe            9007                    real
+thing          9005                    boolean
+guy            9006                    boolean
+foe            9007                    boolean

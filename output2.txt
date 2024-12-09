@@ -22,6 +22,6 @@ Identifier     Memory Location         Type
 i              9000                    integer
 max            9001                    integer
 sum            9002                    integer
-thing          9003                    real
-guy            9004                    real
-foe            9005                    real
+thing          9003                    boolean
+guy            9004                    boolean
+foe            9005                    boolean

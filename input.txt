@@ -1,6 +1,6 @@
 @
 integer i, max, sum; [* declarations *]
-real thing,  guy, foe;
+boolean thing,  guy, foe;
 sum = 0;
 i = 1;
 get (max);
